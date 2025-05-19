@@ -4,6 +4,8 @@
 
 @section('content')
     <div class="w-full h-100">
-        @include ('partials.message')
+        @foreach ($messages as $message)
+            @include('partials.message', ['message' => $message]) <!temporary>
+        @endforeach
     </div>
 @endsection
