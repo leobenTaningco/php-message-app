@@ -11,7 +11,7 @@
 
     @include('partials.header')
 
-    <main class="container mx-auto py-8">
+    <main class="flex mx-auto py-8">
         @yield('content')
     </main>
 
