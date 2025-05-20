@@ -12,7 +12,7 @@
 
     <h2 class="text-2xl font-semibold text-[#5BA5BF] mb-4">Leave a Message</h2>
 
-    <form method="POST" action="{{ route('messages.store') }}">
+    <form method="POST" action="{{ route('messages.store') }}" autocomplete="off">
       @csrf
 
       <div class="mb-4">
@@ -27,10 +27,10 @@
       </div>
 
       <div class="mb-4">
-        <label for="message" class="block text-gray-700 font-medium mb-1">Your Message</label>
+        <label for="content" class="block text-gray-700 font-medium mb-1">Your Message</label>
         <textarea
-          id="message"
-          name="message"
+          id="content"
+          name="content"
           rows="4"
           required
           class="w-full border border-[#A6D7E8] rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#6CB4CE]"

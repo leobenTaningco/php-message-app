@@ -9,14 +9,16 @@ class MessageController extends Controller
 {
     public function index(){
         $messages = Message::all(); 
-        return view('messages.index', compact('messages'));
+        return view('messages.index', data: compact('messages'));
     }
 
     public function store(Request $request){
-        Message::create([
-            'name' => $request->input('name'),
-            'content' => $request->input('content'),
+        $validated = $request->validate([
+            'name'=> 'required|max:10',
+            'content'=> 'required|max:100',
         ]);
+        
+        Message::create($validated);
         return redirect()->back();
     }
 
