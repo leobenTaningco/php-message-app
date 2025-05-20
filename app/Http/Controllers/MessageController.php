@@ -9,12 +9,13 @@ class MessageController extends Controller
 {
     public function index(){
         $messages = Message::all(); 
-        return view('home', compact('messages'));
+        return view('messages.index', compact('messages'));
     }
 
     public function store(Request $request){
         Message::create([
-            'content' => $request->input('content')
+            'name' => $request->input('name'),
+            'content' => $request->input('content'),
         ]);
         return redirect()->back();
     }

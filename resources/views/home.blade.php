@@ -3,9 +3,17 @@
 @section('title', 'Home')
 
 @section('content')
-    <div class="w-full h-100">
-        @foreach ($messages as $message)
-            @include('partials.message', ['message' => $message]) <!temporary>
-        @endforeach
-    </div>
+    @include('messages.index')
+    @include('partials.floating-icon')
+    @include('partials.message-form-modal')
+    
+    <script>
+        function openForm() {
+            document.getElementById('messageFormModal').classList.remove('hidden')
+        }
+
+        function closeForm() {
+            document.getElementById('messageFormModal').classList.add('hidden')
+        }
+    </script>
 @endsection
