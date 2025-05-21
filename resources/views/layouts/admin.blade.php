@@ -6,11 +6,12 @@
     @vite('resources/css/app.css')
     <title>@yield('title', 'MyApp')</title>
 </head>
-<body class="bg-gray-100">
+<body class="background-color: #D8E9EF;">
 
-    <main class="container mx-auto py-8">
+    <main class="flex w-full h-full container mx-auto py-8">
         @yield('content')
     </main>
 
+    @include('partials.footer')
 </body>
 </html>

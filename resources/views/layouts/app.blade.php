@@ -5,13 +5,14 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     @vite('resources/css/app.css')
+    @vite('resources/js/app.js')
     <title>@yield('title', 'MyApp')</title>
 </head>
 <body style="background-color: #D8E9EF;">
 
     @include('partials.header')
 
-    <main class="flex mx-auto py-8">
+    <main class="">
         @yield('content')
     </main>
 

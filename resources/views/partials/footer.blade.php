@@ -1,3 +1,3 @@
 <footer class="w-full h-20 bg-blue-500">
-    <!-- Footer content -->
+    this is the admin panel 
 </footer>
