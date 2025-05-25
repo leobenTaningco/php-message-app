@@ -22,4 +22,9 @@ class MessageController extends Controller
         return redirect()->back();
     }
 
+    public function destroy(Message $message){
+        $message->delete();
+        return redirect()->back();
+    }
+
 }
