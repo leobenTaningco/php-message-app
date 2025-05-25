@@ -9,20 +9,16 @@ window.openDrawingsForm = function () {
     const canvasElement = document.getElementById('canvas');
     if (canvasElement) {
         canvas = new fabric.Canvas('canvas');
+        canvas.isDrawingMode = true;
 
-        const rect = new fabric.Rect({
-            left: 50,
-            top: 50,
-            fill: 'green',
-            width: 50,
-            height: 50
-        });
-
-        canvas.add(rect);
+        canvas.freeDrawingBrush = new fabric.PencilBrush(canvas);
+        var brush = canvas.freeDrawingBrush;
+        brush.color = 'black';
+        brush.width = 5;
     }
 }
 
-window.closeFormTest = function () {
+window.closeDrawingsForm = function () {
     document.getElementById('drawings').classList.add('hidden');
 
     if (canvas) {
