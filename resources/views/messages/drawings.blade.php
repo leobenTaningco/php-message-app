@@ -12,10 +12,11 @@
 
     <h2 class="text-2xl font-semibold text-[#5BA5BF] mb-4">Leave a Message</h2>
 
-    <form method="POST" action="{{ route('messages.store') }}" autocomplete="off">
+    <form method="POST" action="{{ route('drawings.store') }}" autocomplete="off" id="drawingsForm">
       @csrf
 
       <canvas id="canvas" class="w-full aspect-square  border border-gray-500 "></canvas>
+      <input type="hidden" name="content" id="drawingInput" />
 
       <button
         type="submit"

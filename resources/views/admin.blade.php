@@ -3,5 +3,5 @@
 @section('title', 'Admin')
 
 @section('content')
-    @include('messages.index')
+    @include('messageDisplay.drawingsTemp')
 @endsection
