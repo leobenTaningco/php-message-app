@@ -1,0 +1,7 @@
+<div class="flex flex-row w-full h-100">
+    @foreach ($messages as $message)
+        <div class="flex w-75 h-75 bg-amber-50 p-3 m-3">
+            {{ $message->content }} from: {{ $message->name }}
+        </div>
+    @endforeach
+</div>
