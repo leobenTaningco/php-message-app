@@ -6,7 +6,7 @@
     @include('messageDisplay.message-display')
     @include('partials.floating-icon')
     @include('messageModals.message-form-modal')
-    @include('messageModals.message-form-modal')
+    @include('messageModals.drawings-form-modal')
     <button
     onclick="document.getElementById('drawings').classList.contains('hidden')? openDrawingsForm() : closeDrawingsForm()"
     class="fixed bottom-4 right-50 z-51 bg-red-500 text-white rounded-full p-4 shadow-lg hover:bg-blue-700 transition-all cursor-pointer"

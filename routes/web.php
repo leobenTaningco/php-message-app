@@ -11,8 +11,8 @@ Route::get('/', function () {
     return view('home', compact('messages')); //quick fix
 });
 Route::get('admin', function(){
-    $drawings = Drawing::all();
-    return view('admin', compact('drawings'));
+    $messages = Message::all();
+    return view('admin', compact('messages'));
 });
 
 Route::resource('messages', MessageController::class);
