@@ -4,15 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Message extends Model
+class Reply extends Model
 {
     protected $fillable = [
-        'name',
+        'message_id',
         'content'
     ];
 
-    public function replies()
+    public function message()
     {
-        return $this->hasMany(Reply::class);
+        return $this->belongsTo(Message::class);
     }
 }
