@@ -15,7 +15,8 @@ Route::get('/', function () {
 });
 Route::get('admin', function(){
     $messages = Message::all();
-    return view('admin', compact('messages'));
+    $replies = Reply::all();
+    return view('admin', compact('messages', 'replies')); //temporary update later
 });
 
 Route::resource('messages', MessageController::class);

@@ -1,18 +1,27 @@
-@extends('layouts.admin')
+@extends ('layouts.app')
 
-@section('title', 'Admin')
+@section('title', 'Home')
 
 @section('content')
-    <div class="flex flex-row w-full h-100">
-        @foreach ($messages as $message)
-            <div class="flex w-75 h-75 bg-amber-50 p-3 m-3">
-                {{ $loop->iteration }}. {{ $message->content }} from: {{ $message->name }}
-                <form action="{{ route('messages.destroy', $message->id) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="text-red-500 bottom-1 right-1 bg-amber-200 p-3 m-10">Delete</button>
-                </form>
-            </div>
-        @endforeach
-    </div>
+    @include('messageDisplay.message-display-admin')
+    @include('partials.floating-icon')
+    @include('messageModals.message-form-modal')
+    @include('messageModals.drawings-form-modal')
+    <button
+    onclick="document.getElementById('drawings').classList.contains('hidden')? openDrawingsForm() : closeDrawingsForm()"
+    class="fixed bottom-4 right-50 z-51 bg-red-500 text-white rounded-full p-4 shadow-lg hover:bg-blue-700 transition-all cursor-pointer"
+    >
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14m7-7H5"/>
+    </svg>
+    </button>
+    <script>
+        function openForm() {
+            document.getElementById('messageFormModal').classList.remove('hidden')
+        }
+
+        function closeForm() {
+            document.getElementById('messageFormModal').classList.add('hidden')
+        }
+    </script>
 @endsection

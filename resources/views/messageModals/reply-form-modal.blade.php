@@ -1,5 +1,5 @@
 <div
-  id="replyFormModal"
+  id="replyFormModal-{{ $message->id }}"
   class="fixed inset-0 flex items-center justify-center z-50 hidden"
 >
   <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md relative">
