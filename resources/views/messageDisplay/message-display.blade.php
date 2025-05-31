@@ -28,10 +28,15 @@
             <div class="mt-auto flex items-center h-12 w-full bg-blue-400 p-3 rounded-b-md">
                 <button 
                 onclick="document.getElementById('replyFormModal-{{ $message->id }}').classList.contains('hidden')? openReplyForm('{{ $message->id }}'): closeReplyForm('{{ $message->id }}')"
-                class="w-full hover:bg-blue-700 text-white py-2 rounded-md font-semibold transition"
+                class="w-full flex items-center justify-between rounded-md cursor-pointer"
                 type="button"
                 >
-                Reply
+                    <div class="flex items-center w-full mr-3 bg-white p-1 rounded-md text-sm text-gray-400">
+                        &nbsp; Reply
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5 rounded-full hover:bg-blue-300">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22 2L11 13M22 2L15 22L11 13L2 9L22 2Z" />
+                    </svg>
                 </button>
             </div>
         </div>
