@@ -14,8 +14,8 @@ class MessageController extends Controller
 
     public function store(Request $request){
         $validated = $request->validate([
-            'name'=> 'required|max:10',
-            'content'=> 'required|max:100',
+            'name'=> 'required|max:15',
+            'content'=> 'required|max:200',
         ]);
         
         Message::create($validated);
