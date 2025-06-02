@@ -16,6 +16,7 @@ class MessageController extends Controller
         $validated = $request->validate([
             'name'=> 'required|max:15',
             'content'=> 'required|max:200',
+            'color'=> 'required',
         ]);
         
         Message::create($validated);

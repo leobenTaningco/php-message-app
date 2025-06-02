@@ -8,7 +8,8 @@ class Reply extends Model
 {
     protected $fillable = [
         'message_id',
-        'content'
+        'content',
+        'color',
     ];
 
     public function message()
