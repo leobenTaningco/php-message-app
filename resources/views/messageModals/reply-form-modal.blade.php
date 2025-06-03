@@ -1,6 +1,6 @@
 <div
   id="replyFormModal-{{ $message->id }}"
-  class="fixed inset-0 flex items-center justify-center z-50 hiden"
+  class="fixed inset-0 flex items-center justify-center z-50 hidden"
 >
   <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md relative">
     <button
@@ -54,12 +54,9 @@
         </div>
         <div class="mt-auto flex items-center h-12 w-full p-3 rounded-b-md" style="background-color: {{ $message->color }};">
           <div class="w-full flex items-center justify-between rounded-md">
-            <div class="flex items-center w-full mr-3 bg-white p-1 rounded-md text-sm text-gray-400">
-            &nbsp;Reply
+            <div class="flex items-center w-full mr-3 p-1 rounded-md text-sm text-gray-400">
+              &nbsp; 
             </div>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5 rounded-full hover:bg-blue-300">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22 2L11 13M22 2L15 22L11 13L2 9L22 2Z" />
-            </svg>
           </div>
         </div>
       </div>
