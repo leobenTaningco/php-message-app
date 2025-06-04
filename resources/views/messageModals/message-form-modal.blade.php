@@ -38,11 +38,11 @@
       <div class="mt-4">
         <label class="block text-blue-900 font-semibold mb-2">Choose a Color:</label>
         <div class="flex space-x-3">
-          <div onclick="selectColor('#F87171')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #F87171;"></div>
-          <div onclick="selectColor('#FBBF24')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #FBBF24;"></div>
-          <div onclick="selectColor('#34D399')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #34D399;"></div>
-          <div onclick="selectColor('#60A5FA')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #60A5FA;"></div>
-          <div onclick="selectColor('#A78BFA')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #A78BFA;"></div>
+          <div onclick="MessageModal.selectColor('#F87171')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #F87171;"></div>
+          <div onclick="MessageModal.selectColor('#FBBF24')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #FBBF24;"></div>
+          <div onclick="MessageModal.selectColor('#34D399')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #34D399;"></div>
+          <div onclick="MessageModal.selectColor('#60A5FA')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #60A5FA;"></div>
+          <div onclick="MessageModal.selectColor('#A78BFA')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #A78BFA;"></div>
         </div>
         <input type="hidden" name="color" id="colorInput">
       </div>
@@ -51,34 +51,36 @@
   </div>
 </div>
 <script>
-function selectColor(color) {
-  document.getElementById('colorInput').value = color;
-  document.querySelectorAll('[onclick^="selectColor"]').forEach(el => {
-    el.classList.remove('ring-4', 'ring-offset-2', 'ring-blue-500');
-  });
-  event.target.classList.add('ring-4', 'ring-offset-2', 'ring-blue-500');
-  document.querySelectorAll('.header-color').forEach(el => {
-    el.style.backgroundColor = color;
-  });
-  document.querySelectorAll('.footer-color').forEach(el => {
-    el.style.backgroundColor = color;
-  });
-  document.querySelectorAll('.message-bubble-color').forEach(el => {
-    el.style.backgroundColor = adjustBubbleColor(color);
-  });
-}
+  const MessageModal = {
+    selectColor(color) {
+      document.getElementById('colorInput').value = color;
+      document.querySelectorAll('[onclick^="selectColor"]').forEach(el => {
+        el.classList.remove('ring-4', 'ring-offset-2', 'ring-blue-500');
+      });
+      event.target.classList.add('ring-4', 'ring-offset-2', 'ring-blue-500');
+      document.querySelectorAll('.header-color').forEach(el => {
+        el.style.backgroundColor = color;
+      });
+      document.querySelectorAll('.footer-color').forEach(el => {
+        el.style.backgroundColor = color;
+      });
+      document.querySelectorAll('.message-bubble-color').forEach(el => {
+        el.style.backgroundColor = adjustBubbleColor(color);
+      });
+    },
 
-function adjustBubbleColor(hex, percent = 20) {
-  let num = parseInt(hex.replace("#",""),16),
-      amt = Math.round(2.55 * percent),
-      R = (num >> 16) + amt,
-      G = (num >> 8 & 0x00FF) + amt,
-      B = (num & 0x0000FF) + amt;
-  return "#" + (
-    0x1000000 +
-    (R<255?R<1?0:R:255)*0x10000 +
-    (G<255?G<1?0:G:255)*0x100 +
-    (B<255?B<1?0:B:255)
-  ).toString(16).slice(1);
-}
+    adjustBubbleColor(hex, percent = 20) {
+      let num = parseInt(hex.replace("#",""),16),
+          amt = Math.round(2.55 * percent),
+          R = (num >> 16) + amt,
+          G = (num >> 8 & 0x00FF) + amt,
+          B = (num & 0x0000FF) + amt;
+      return "#" + (
+        0x1000000 +
+        (R<255?R<1?0:R:255)*0x10000 +
+        (G<255?G<1?0:G:255)*0x100 +
+        (B<255?B<1?0:B:255)
+      ).toString(16).slice(1);
+    }
+  }
 </script>
