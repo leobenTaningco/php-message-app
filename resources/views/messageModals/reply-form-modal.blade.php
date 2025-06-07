@@ -63,45 +63,55 @@
       <div class="mt-4">
         <label class="block text-blue-900 font-semibold mb-2">Choose a Color:</label>
         <div class="flex space-x-3">
-          <div onclick="selectReplyColor('#F87171')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #F87171;"></div>
-          <div onclick="selectReplyColor('#FBBF24')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #FBBF24;"></div>
-          <div onclick="selectReplyColor('#34D399')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #34D399;"></div>
-          <div onclick="selectReplyColor('#60A5FA')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #60A5FA;"></div>
-          <div onclick="selectReplyColor('#A78BFA')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #A78BFA;"></div>
+          <div onclick="ReplyModal.selectReplyColor('#F87171')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #F87171;"></div>
+          <div onclick="ReplyModal.selectReplyColor('#FBBF24')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #FBBF24;"></div>
+          <div onclick="ReplyModal.selectReplyColor('#34D399')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #34D399;"></div>
+          <div onclick="ReplyModal.selectReplyColor('#60A5FA')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #60A5FA;"></div>
+          <div onclick="ReplyModal.selectReplyColor('#A78BFA')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #A78BFA;"></div>
         </div>
-        <input type="hidden" name="color" id="colorInput">
+        <input type="hidden" name="color" id="replyColorInput">
       </div>
       <button type="submit" class="mt-4 w-full bg-[#6CB4CE] text-white font-extrabold px-4 py-2 rounded hover:bg-[#5BA5BF]">Submit</button>
     </form>
   </div>
 </div>
 <script>
-  function adjustBubbleColor(hex, percent = 20) {
+  const ReplyModal = {
+    selectReplyColor(color) {
+      document.getElementById('colorInput').value = color;
+      document.querySelectorAll('[onclick^="ReplyModal.selectReplyColor"]').forEach(el => {
+        el.classList.remove('ring-4', 'ring-offset-2', 'ring-blue-500');
+      });
+      event.target.classList.add('ring-4', 'ring-offset-2', 'ring-blue-500');
+      document.querySelectorAll('.reply-bubble-color').forEach(el => {
+        el.style.backgroundColor = adjustBubbleColor(color);
+      });
+    },
+
+    adjustBubbleColor(hex, percent = 20) {
       let num = parseInt(hex.replace("#",""),16),
           amt = Math.round(2.55 * percent),
           R = (num >> 16) + amt,
           G = (num >> 8 & 0x00FF) + amt,
           B = (num & 0x0000FF) + amt;
       return "#" + (
-          0x1000000 +
-          (R<255?R<1?0:R:255)*0x10000 +
-          (G<255?G<1?0:G:255)*0x100 +
-          (B<255?B<1?0:B:255)
+        0x1000000 +
+        (R<255?R<1?0:R:255)*0x10000 +
+        (G<255?G<1?0:G:255)*0x100 +
+        (B<255?B<1?0:B:255)
       ).toString(16).slice(1);
-  }    
-  document.querySelectorAll('.message-bubble-color').forEach(el => {
-  let color = el.dataset.color; 
-  let adjusted = adjustBubbleColor(color);
-  el.style.backgroundColor = adjusted; 
-  });
-  function selectReplyColor(color) {
-    document.getElementById('colorInput').value = color;
-    document.querySelectorAll('[onclick^="selectReplyColor"]').forEach(el => {
-      el.classList.remove('ring-4', 'ring-offset-2', 'ring-blue-500');
-    });
-    event.target.classList.add('ring-4', 'ring-offset-2', 'ring-blue-500');
-    document.querySelectorAll('.reply-bubble-color').forEach(el => {
-      el.style.backgroundColor = adjustBubbleColor(color);
-    });
-  }
+    },
+    
+    messageBubbleColor() {
+      document.querySelectorAll('.message-bubble-color').forEach(el => {
+      let color = el.dataset.color; 
+      let adjusted = adjustBubbleColor(color);
+      el.style.backgroundColor = adjusted; 
+      });
+    }
+  };
+
+  document.addEventListener("DOMContentLoaded", () => {
+    ReplyModal.messageBubbleColor();
+  })
 </script>
