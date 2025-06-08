@@ -69,7 +69,7 @@
           <div onclick="ReplyModal.selectReplyColor('#60A5FA')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #60A5FA;"></div>
           <div onclick="ReplyModal.selectReplyColor('#A78BFA')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #A78BFA;"></div>
         </div>
-        <input type="hidden" name="color" id="replyColorInput">
+        <input type="hidden" name="color" id="replyColorInput-{{ $message->id }}">
       </div>
       <button type="submit" class="mt-4 w-full bg-[#6CB4CE] text-white font-extrabold px-4 py-2 rounded hover:bg-[#5BA5BF]">Submit</button>
     </form>
@@ -78,7 +78,7 @@
 <script>
   const ReplyModal = {
     selectReplyColor(color) {
-      document.getElementById('colorInput').value = color;
+      document.getElementById("replyColorInput-{{ $message->id }}").value = color;
       document.querySelectorAll('[onclick^="ReplyModal.selectReplyColor"]').forEach(el => {
         el.classList.remove('ring-4', 'ring-offset-2', 'ring-blue-500');
       });
