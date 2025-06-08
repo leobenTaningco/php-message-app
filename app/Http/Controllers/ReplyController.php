@@ -25,7 +25,7 @@ class ReplyController extends Controller
         ]);
 
         Reply::create($validated);
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Reply added!');
     }
     
     public function destroy(Reply $reply){
