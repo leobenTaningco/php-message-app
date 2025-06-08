@@ -17,7 +17,7 @@
                     <div class="absolute left-0 bottom-0 transform -translate-x-[0.37rem] translate-y-[0.37rem] w-1 h-1 bg-red-100 rotate-40 rounded-lg"></div>
                 </div>
                 @foreach ($message->replies as $reply)
-                    <div class="relative p-3 mx-5 my-1 bg-red-200 text-slate-800 rounded-lg max-w-[70%] self-end">
+                    <div class="reply-bubble relative p-3 mx-5 my-1 bg-red-200 text-slate-800 rounded-lg max-w-[70%] self-end" data-color="{{ $reply->color }}">
                     <span>{{ $reply->content }}</span>
                         <div class="absolute right-0 bottom-0 transform translate-x-[0.18rem] translate-y-[0.18rem] w-2 h-2 bg-red-100 rotate-40 rounded-lg"></div>
                         <div class="absolute right-0 bottom-0 transform translate-x-[0.32rem] translate-y-[0.32rem] w-1.5 h-1.5 bg-red-200 rotate-40 rounded-lg"></div>
@@ -64,7 +64,13 @@
             (B<255?B<1?0:B:255)
         ).toString(16).slice(1);
     }    
-        document.querySelectorAll('.message-bubble').forEach(el => {
+    document.querySelectorAll('.message-bubble').forEach(el => {
+        let color = el.dataset.color; 
+        let adjusted = adjustBubbleColor(color);
+        el.style.backgroundColor = adjusted; 
+    });
+
+    document.querySelectorAll('.reply-bubble').forEach(el => {
         let color = el.dataset.color; 
         let adjusted = adjustBubbleColor(color);
         el.style.backgroundColor = adjusted; 

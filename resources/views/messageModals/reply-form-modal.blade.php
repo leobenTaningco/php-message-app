@@ -12,7 +12,7 @@
 
     <h2 class="text-2xl font-semibold text-[#5BA5BF] mb-4">Leave a Reply</h2>
 
-        <form method="POST" action="{{ route('replies.store') }}" autocomplete="off">
+    <form method="POST" action="{{ route('replies.store') }}" autocomplete="off">
       @csrf
       <div class="flex flex-col bg-white rounded-md shadow-lg">
         <div class="flex items-center h-12 p-3 rounded-t-md" style="background-color: {{ $message->color }};">
@@ -21,7 +21,7 @@
           </svg>
           <div class="ml-2 w-full rounded px-3 py-1.5 text-blue-900 font-semibold focus:outline-none">{{ $message->name }}</div>
         </div>
-
+        <input type="hidden" name="message_id" value="{{ $message->id }}">
         <div class="flex flex-col flex-grow overflow-auto py-3">
           <div class="relative p-3 mx-5 mb-3 message-bubble-color text-slate-800 rounded-lg max-w-[75%] self-start" data-color="{{ $message->color }}">
             <div class="w-full px-3 py-2 ">{{ $message->content }}</div>
@@ -63,11 +63,11 @@
       <div class="mt-4">
         <label class="block text-blue-900 font-semibold mb-2">Choose a Color:</label>
         <div class="flex space-x-3">
-          <div onclick="ReplyModal.selectReplyColor('#F87171')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #F87171;"></div>
-          <div onclick="ReplyModal.selectReplyColor('#FBBF24')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #FBBF24;"></div>
-          <div onclick="ReplyModal.selectReplyColor('#34D399')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #34D399;"></div>
-          <div onclick="ReplyModal.selectReplyColor('#60A5FA')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #60A5FA;"></div>
-          <div onclick="ReplyModal.selectReplyColor('#A78BFA')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #A78BFA;"></div>
+          <div onclick="ReplyModal.selectReplyColor('#F87171', '{{ $message->id }}')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #F87171;"></div>
+          <div onclick="ReplyModal.selectReplyColor('#FBBF24', '{{ $message->id }}')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #FBBF24;"></div>
+          <div onclick="ReplyModal.selectReplyColor('#34D399', '{{ $message->id }}')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #34D399;"></div>
+          <div onclick="ReplyModal.selectReplyColor('#60A5FA', '{{ $message->id }}')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #60A5FA;"></div>
+          <div onclick="ReplyModal.selectReplyColor('#A78BFA', '{{ $message->id }}')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #A78BFA;"></div>
         </div>
         <input type="hidden" name="color" id="replyColorInput-{{ $message->id }}">
       </div>
@@ -77,8 +77,8 @@
 </div>
 <script>
   const ReplyModal = {
-    selectReplyColor(color) {
-      document.getElementById("replyColorInput-{{ $message->id }}").value = color;
+    selectReplyColor(color, messageId) {
+      document.getElementById("replyColorInput-" + messageId).value = color;
       document.querySelectorAll('[onclick^="ReplyModal.selectReplyColor"]').forEach(el => {
         el.classList.remove('ring-4', 'ring-offset-2', 'ring-blue-500');
       });
