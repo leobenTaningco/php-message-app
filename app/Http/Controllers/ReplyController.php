@@ -16,6 +16,12 @@ class ReplyController extends Controller
         $validated = $request->validate([
             'message_id' => 'required|exists:messages,id',
             'content' => 'required|max:100',
+            'color' => 'required',
+        ],[
+            'message_id.required' => 'Please select a message to reply to.',
+            'content.required' => 'Please enter a reply.',
+            'content.max' => 'Reply cannot exceed 100 characters.',
+            'color.required' => 'Please select a color.',
         ]);
 
         Reply::create($validated);
