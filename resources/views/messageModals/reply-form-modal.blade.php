@@ -27,7 +27,7 @@
           </div>
         </div>
         @foreach ($message->replies as $reply)
-        <div class="relative p-3 mx-5 my-3 bg-red-200 text-slate-800 rounded-lg max-w-[70%] self-end">
+        <div class="relative p-3 mx-5 my-3 replies-bubble-color text-slate-800 rounded-lg max-w-[70%] self-end" data-color="{{ $reply->color }}">
           <span>{{ $reply->content }}</span>
           <div class="absolute right-0 bottom-0 transform translate-x-[0.18rem] translate-y-[0.18rem] w-2 h-2 bg-red-100 rotate-40 rounded-lg"></div>
           <div class="absolute right-0 bottom-0 transform translate-x-[0.32rem] translate-y-[0.32rem] w-1.5 h-1.5 bg-red-200 rotate-40 rounded-lg"></div>
@@ -101,9 +101,19 @@
         let adjusted = adjustBubbleColor(color);
         el.style.backgroundColor = adjusted;
       });
+    },
+    repliesBubbleColor() {
+      document.querySelectorAll('.replies-bubble-color').forEach(el => {
+        let color = el.dataset.color;
+        let adjusted = adjustBubbleColor(color);
+        el.style.backgroundColor = adjusted;
+      });
     }
   };
   document.addEventListener("DOMContentLoaded", () => {
     ReplyModal.messageBubbleColor();
+  })
+  document.addEventListener("DOMContentLoaded", () => {
+    ReplyModal.repliesBubbleColor();
   })
 </script>

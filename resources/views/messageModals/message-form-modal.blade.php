@@ -51,7 +51,7 @@
   const MessageModal = {
     selectColor(color) {
       document.getElementById('colorInput').value = color;
-      document.querySelectorAll('[onclick^="selectColor"]').forEach(el => {
+      document.querySelectorAll('[onclick^="MessageModal.selectColor"]').forEach(el => {
         el.classList.remove('ring-4', 'ring-offset-2', 'ring-blue-500');
       });
       event.target.classList.add('ring-4', 'ring-offset-2', 'ring-blue-500');
