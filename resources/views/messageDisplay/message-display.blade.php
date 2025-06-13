@@ -1,15 +1,15 @@
-<div class="flex flex-row w-full h-100 p-4">
+<div class="flex flex-row items-start  w-full h-full p-4">
   @foreach ($messages as $message)
   @include('messageModals.reply-form-modal', ['message' => $message])
-  <div class="flex flex-col w-75 h-75 bg-white m-3 rounded-md shadow-lg">
+  <div class="flex flex-col w-75 h-auto bg-white m-3 rounded-md shadow-lg">
     <div class="flex items-center h-12 w-full p-3 rounded-t-md" style="background-color: {{ $message->color }}">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-9 h-9 stroke-blue-900">
         <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
       </svg>
       <span class="font-bold ml-2 text-blue-900">{{ $message->name }}</span>
     </div>
-    <div class="flex flex-col flex-grow overflow-auto py-2">
-      <div class="message-bubble relative p-3 mx-5 mt-auto mb-1 text-slate-800 rounded-lg max-w-[70%] self-start" data-color="{{ $message->color }}">
+    <div class="flex flex-col flex-grow py-2">
+      <div class="message-bubble relative p-3 mx-5 mb-1 text-slate-800 rounded-lg max-w-[70%] self-start" data-color="{{ $message->color }}">
         <span>{{ $message->content }}</span>
         <div class="absolute left-0 bottom-0 transform -translate-x-[0.18rem] translate-y-[0.18rem] w-2 h-2 bg-blue-100 rotate-40 rounded-lg"></div>
         <div class="absolute left-0 bottom-0 transform -translate-x-[0.32rem] translate-y-[0.32rem] w-1.5 h-1.5 bg-green-100 rotate-40 rounded-lg"></div>
