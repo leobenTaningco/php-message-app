@@ -1,4 +1,4 @@
-<div class="flex flex-row items-start w-full h-full p-4">
+<div class="flex flex-wrap w-full h-full container mx-auto py-8 gap-4 justify-center">
   @foreach ($messages as $message)
   @include('messageModals.reply-form-modal', ['message' => $message])
   <div class="flex flex-col w-75 h-auto bg-white m-3 rounded-md shadow-lg">

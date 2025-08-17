@@ -10,9 +10,11 @@
 </head>
 <body style="background-color: #D8E9EF;">
 
-    @include('partials.header')
+    <header class="sticky top-0 z-50">
+        @include('partials.header')
+    </header>
 
-    <main class="">
+    <main class="flex w-full h-full container mx-auto py-8">
         @yield('content')
     </main>
 
