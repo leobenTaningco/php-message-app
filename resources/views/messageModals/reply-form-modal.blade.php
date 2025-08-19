@@ -50,19 +50,32 @@
       <div class="mt-4">
         <label class="block text-blue-900 font-semibold mb-2">Choose a Color:</label>
         <div class="flex space-x-3">
-          <div onclick="ReplyModal.selectReplyColor('#F87171', '{{ $message->id }}')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #F87171;"></div>
+          <div id="defaultReplyColor" onclick="ReplyModal.selectReplyColor('#F87171', '{{ $message->id }}')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #F87171;"></div>
           <div onclick="ReplyModal.selectReplyColor('#FBBF24', '{{ $message->id }}')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #FBBF24;"></div>
           <div onclick="ReplyModal.selectReplyColor('#34D399', '{{ $message->id }}')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #34D399;"></div>
           <div onclick="ReplyModal.selectReplyColor('#60A5FA', '{{ $message->id }}')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #60A5FA;"></div>
           <div onclick="ReplyModal.selectReplyColor('#A78BFA', '{{ $message->id }}')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #A78BFA;"></div>
         </div>
-        <input type="hidden" name="color" id="replyColorInput-{{ $message->id }}">
+        <input type="hidden" name="color" id="replyColorInput-{{ $message->id }}" value='#F87171'>
       </div>
       <button type="submit" class="mt-4 w-full bg-[#6CB4CE] text-white font-extrabold px-4 py-2 rounded hover:bg-[#5BA5BF]">Submit</button>
     </form>
   </div>
 </div>
 <script>
+  addEventListener('DOMContentLoaded', () => {
+    const defaultColorReply = '#F87171';
+    const messageId = document.querySelector('input[name="message_id"]').value;
+    const replyColorInput = document.getElementById("replyColorInput-" + messageId);
+    if (replyColorInput) {
+      replyColorInput.value = defaultColorReply;
+    }    
+    document.getElementById('defaultReplyColor')
+      .classList.add('ring-4', 'ring-offset-2', 'ring-blue-500');
+    document.querySelectorAll('.reply-bubble-color').forEach(el => {
+      el.style.backgroundColor = adjustBubbleColor(defaultColorReply);
+    });
+  });
   const ReplyModal = {
     selectReplyColor(color, messageId) {
       document.getElementById("replyColorInput-" + messageId).value = color;

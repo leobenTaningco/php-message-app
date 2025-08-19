@@ -1,5 +1,5 @@
-<div id="messageFormModal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
-  <div class="bg-blue-100 rounded-lg shadow-lg p-6 w-full max-w-md relative">
+<div id="messageFormModal" class="fixed inset-0 flex items-center justify-center z-50 hidden" >
+  <div class="bg-blue-100 rounded-lg shadow-lg p-6 w-full max-w-md relative" onload="MessageModal.selectColor('#F87171')">
     <button onclick="closeForm()" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-xl font-bold">
       &times;
     </button>
@@ -34,20 +34,39 @@
       </div>
       <div class="mt-4">
         <label class="block text-blue-900 font-semibold mb-2">Choose a Color:</label>
-        <div class="flex space-x-3">
-          <div onclick="MessageModal.selectColor('#F87171')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #F87171;"></div>
+        <div class="flex space-x-3" >
+          <div id="defaultColor" onclick="MessageModal.selectColor('#F87171')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #F87171;"></div>
           <div onclick="MessageModal.selectColor('#FBBF24')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #FBBF24;"></div>
           <div onclick="MessageModal.selectColor('#34D399')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #34D399;"></div>
           <div onclick="MessageModal.selectColor('#60A5FA')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #60A5FA;"></div>
           <div onclick="MessageModal.selectColor('#A78BFA')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #A78BFA;"></div>
         </div>
-        <input type="hidden" name="color" id="colorInput">
+        <input type="hidden" name="color" id="colorInput" value="#F87171">
       </div>
       <button type="submit" class="mt-4 w-full bg-[#6CB4CE] text-white font-extrabold px-4 py-2 rounded hover:bg-[#5BA5BF]">Submit</button>
+    </div>
     </form>
   </div>
 </div>
 <script>
+  addEventListener('DOMContentLoaded', () => {
+    const defaultColor = '#F87171';
+
+    document.getElementById('colorInput').value = defaultColor;
+
+    document.getElementById('defaultColor')
+      .classList.add('ring-4', 'ring-offset-2', 'ring-blue-500');
+
+    document.querySelectorAll('.header-color').forEach(el => {
+      el.style.backgroundColor = defaultColor;
+    });
+    document.querySelectorAll('.footer-color').forEach(el => {
+      el.style.backgroundColor = defaultColor;
+    });
+    document.querySelectorAll('.message-bubble-color').forEach(el => {
+      el.style.backgroundColor = adjustBubbleColor(defaultColor);
+    });
+  });
   const MessageModal = {
     selectColor(color) {
       document.getElementById('colorInput').value = color;
