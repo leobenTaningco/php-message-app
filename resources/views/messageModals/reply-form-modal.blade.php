@@ -13,7 +13,7 @@
       <div class="flex flex-col w-full h-[24rem] bg-white rounded-md shadow-lg overflow-hidden">
         <div class="flex items-center h-12 p-3 rounded-t-md" style="background-color: {{ $message->color }};">
           <img
-            src="{{ $message->user && $message->user->profile_picture ? asset('storage/' . $message->user()->profile_picture) : 'https://pbs.twimg.com/media/GkcZw0lWEAAuGGz?format=png&name=small' }}"
+            src="{{ $message->user && $message->user->profile_picture ? asset('storage/' . $message->user->profile_picture) : 'https://pbs.twimg.com/media/GkcZw0lWEAAuGGz?format=png&name=small' }}"
             class="w-10 h-10 rounded-full border border-gray-300 object-cover"
           >
           <div class="ml-2 w-full rounded px-3 py-1.5 text-blue-900 font-semibold focus:outline-none">{{ $message->user->name ?? 'Anonymous' }}</div>

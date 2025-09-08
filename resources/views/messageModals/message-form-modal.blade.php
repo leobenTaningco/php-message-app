@@ -1,5 +1,5 @@
 <div id="messageFormModal" class="fixed inset-0 flex items-center justify-center z-50 hidden" >
-  <div class="bg-gray-800 rounded-lg shadow-lg p-6 w-full max-w-md relative" onload="MessageModal.selectColor('#F87171')">
+  <div class="bg-gray-600 rounded-lg shadow-lg p-6 w-full max-w-md relative" onload="MessageModal.selectColor('#F87171')">
     <button onclick="closeForm()" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-xl font-bold">
       &times;
     </button>
