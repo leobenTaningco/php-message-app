@@ -1,21 +1,22 @@
 <div
   id="replyFormModal-{{ $message->id }}"
   class="flex w-full inset-0 p-4 fixed items-center justify-center z-50 hidden">
-  <div class="fixed bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
+  <div class="fixed rounded-lg shadow-lg p-6 w-full max-w-md bg-gray-800">
     <button
       onclick="closeReplyForm('{{ $message->id }}')"
       class="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-xl font-bold">
       &times;
     </button>
-    <h2 class="text-2xl font-semibold text-[#5BA5BF] mb-4">Leave a Reply</h2>
+    <h2 class="text-2xl font-semibold text-[#d5eff8] mb-4">Leave a Reply</h2>
     <form method="POST" action="{{ route('replies.store') }}" autocomplete="off">
       @csrf
       <div class="flex flex-col w-full h-[24rem] bg-white rounded-md shadow-lg overflow-hidden">
         <div class="flex items-center h-12 p-3 rounded-t-md" style="background-color: {{ $message->color }};">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 stroke-blue-900">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-          </svg>
-          <div class="ml-2 w-full rounded px-3 py-1.5 text-blue-900 font-semibold focus:outline-none">{{ $message->name }}</div>
+          <img
+            src="{{ $message->user && $message->user->profile_picture ? asset('storage/' . $message->user()->profile_picture) : 'https://pbs.twimg.com/media/GkcZw0lWEAAuGGz?format=png&name=small' }}"
+            class="w-10 h-10 rounded-full border border-gray-300 object-cover"
+          >
+          <div class="ml-2 w-full rounded px-3 py-1.5 text-blue-900 font-semibold focus:outline-none">{{ $message->user->name ?? 'Anonymous' }}</div>
         </div>
 
         <input type="hidden" name="message_id" value="{{ $message->id }}">
@@ -48,7 +49,7 @@
       </div>
       </div>
       <div class="mt-4">
-        <label class="block text-blue-900 font-semibold mb-2">Choose a Color:</label>
+        <label class="block text-white font-semibold mb-2">Choose a Color:</label>
         <div class="flex space-x-3">
           <div id="defaultReplyColor" onclick="ReplyModal.selectReplyColor('#F87171', '{{ $message->id }}')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #F87171;"></div>
           <div onclick="ReplyModal.selectReplyColor('#FBBF24', '{{ $message->id }}')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #FBBF24;"></div>

@@ -25,7 +25,7 @@
                 </header>
             @endif
 
-            <div class="">
+            <div class="mx-auto p-6 sm:p-20">
                 {{ $slot }}
             </div>
         </div>

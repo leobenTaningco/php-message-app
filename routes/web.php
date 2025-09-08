@@ -12,14 +12,14 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
-    $messages = Message::all();
+    $messages = Message::orderBy('created_at', 'desc')->get();
     $replies = Reply::all();
 
     return view('home-guest', compact('messages', 'replies'));
 });
 
 Route::get('/dashboard', function () {
-    $messages = Message::all();
+    $messages = Message::orderBy('created_at', 'desc')->get();
     $replies = Reply::all();
     $user = Auth::user();
     

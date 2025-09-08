@@ -1,17 +1,21 @@
 <div id="messageFormModal" class="fixed inset-0 flex items-center justify-center z-50 hidden" >
-  <div class="bg-blue-100 rounded-lg shadow-lg p-6 w-full max-w-md relative" onload="MessageModal.selectColor('#F87171')">
+  <div class="bg-gray-800 rounded-lg shadow-lg p-6 w-full max-w-md relative" onload="MessageModal.selectColor('#F87171')">
     <button onclick="closeForm()" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-xl font-bold">
       &times;
     </button>
-    <h2 class="text-2xl font-semibold text-[#5BA5BF] mb-4">Leave a Message</h2>
+    <h2 class="text-2xl font-semibold text-[#c2dae3] mb-4">Leave a Message</h2>
     <form method="POST" action="{{ route('messages.store') }}" autocomplete="off">
       @csrf
+      
       <div class="flex flex-col bg-white rounded-md shadow-lg">
         <div class="flex items-center h-12 header-color p-3 rounded-t-md">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 stroke-blue-900">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-          </svg>
-          <input type="text" id="name" name="name" required placeholder="Your name here..." class="ml-2 w-full border border-[#A6D7E8] rounded px-3 py-1.5 text-blue-900 font-semibold focus:outline-none focus:ring-2 focus:ring-[#6CB4CE]" />
+          <img
+            src="{{ auth()->user()->profile_picture ? asset('storage/' . auth()->user()->profile_picture) : 'https://pbs.twimg.com/media/GkcZw0lWEAAuGGz?format=png&name=small' }}"
+            class="w-10 h-10 rounded-full border border-gray-300 object-cover"
+          >
+          <span class="ml-3 text-blue-900 font-semibold">
+            {{ auth()->user()->name }}
+          </span>
         </div>
         <div class="flex flex-col flex-grow overflow-auto py-3">
           <div class="relative p-3 mx-5 mb-3 message-bubble-color text-slate-800 rounded-lg max-w-[75%] self-start">
@@ -33,7 +37,7 @@
         </div>
       </div>
       <div class="mt-4">
-        <label class="block text-blue-900 font-semibold mb-2">Choose a Color:</label>
+        <label class="block text-white font-semibold mb-2">Choose a Color:</label>
         <div class="flex space-x-3" >
           <div id="defaultColor" onclick="MessageModal.selectColor('#F87171')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #F87171;"></div>
           <div onclick="MessageModal.selectColor('#FBBF24')" class="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" style="background-color: #FBBF24;"></div>

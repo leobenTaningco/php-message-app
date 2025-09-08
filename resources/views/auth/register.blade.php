@@ -36,18 +36,18 @@
         <!-- Email Address -->
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email not required, fill only if you want password resets')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" value="dummy123@gmail.com"  />
+            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" value="" autocomplete="off"  />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
         <!-- Password -->
         <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+            <x-input-label for="password" :value="__('Password')" autocomplete="off" />
 
             <x-text-input id="password" class="block mt-1 w-full"
                             type="password"
                             name="password"
-                            required autocomplete="new-password" />
+                            required autocomplete="off" />
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
@@ -58,7 +58,7 @@
 
             <x-text-input id="password_confirmation" class="block mt-1 w-full"
                             type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
+                            name="password_confirmation" required autocomplete="off" />
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
@@ -68,7 +68,7 @@
                 {{ __('Already registered?') }}
             </a>
 
-            <x-primary-button class="ms-4">
+            <x-primary-button class="ms-4 cursor-pointer">
                 {{ __('Register') }}
             </x-primary-button>
         </div>

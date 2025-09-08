@@ -24,6 +24,8 @@ class ReplyController extends Controller
             'color.required' => 'Please select a color.',
         ]);
 
+        $validated['user_id'] = auth()->id();
+        
         Reply::create($validated);
         return redirect()->back()->with('success', 'Reply added!');
     }
