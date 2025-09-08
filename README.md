@@ -20,7 +20,7 @@ Think of it like a **Facebook Messenger-style wall**, but open and fun.
 - **Laravel** – Backend framework
 - **Blade** – Templating engine
 - **Tailwind CSS** – Styling
-- **SQLite** – (Optional) Lightweight database for development
+- ~~SQLite~~ – (Not yet implemented)
 
 ---
 
